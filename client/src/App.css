@@ -3,6 +3,10 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Times New Roman", Times, serif;
+  /* background-image: url("components/images/videos.mp4");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 .App-header {
   display: flex;

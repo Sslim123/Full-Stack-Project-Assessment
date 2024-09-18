@@ -1,12 +1,12 @@
 import React from "react";
-import Video from "./images/Videos2.mp4";
+//import Video from "./images/Videos2.mp4";
 
 const Header = () => {
   return (
     <header className="App-header">
-      <video autoPlay Loop muted className="bg-header">
+      {/* <video autoPlay Loop muted className="bg-header">
         <source src={Video} type="video/mp4" />
-      </video>
+      </video> */}
       <section className="section-logo">
         <span className="logo-span">
           <strong>MOVIE</strong>
