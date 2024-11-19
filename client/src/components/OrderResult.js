@@ -1,23 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewVideoPlayer from "./NewVideoPlayer";
+const jsonResult = require("../exampleresponse.json");
 
 const OrderResult = () => {
   const [titleAndUrl, setTitleAndUrl] = useState([]);
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
-
+  const [urlData, setUrlData] = useState(jsonResult);
+  let randomNumbers = Math.floor(Math.random() * 100 + 1);
+  const [rating, setRating] = useState(randomNumbers);
+  function fetchUrlData() {
+    // console.log(urlData)
+  }
+  fetchUrlData();
   const clickHandle = (e) => {
-    console.log(e.target.value);
     if (e.target.name === "title") {
       setTitle(e.target.value);
     } else if (e.target.name === "url") {
-      console.log(e.target.value);
       setUrl(e.target.value);
+    } else if (rating !== "") {
+      setRating(rating);
     }
   };
-  function buttonAddVideo() {
+
+  const Submit = async (e) => {
+    e.preventDefault();
     let newVideo = {
       title: title,
+      rating: rating,
       url: url,
     };
     let updateNewVideo = [...titleAndUrl];
@@ -26,25 +36,23 @@ const OrderResult = () => {
     setTitleAndUrl(updateNewVideo);
     setTitle("");
     setUrl("");
-  }
-
-  function submit(e) {
-    e.preventDefault();
-
-    fetch("http://localhost:5000/datas/", {
-      method: "POST",
-      body: JSON.stringify({
-        title: title,
-        url: url,
-      }),
-      headers: { "content-type": "application/json" },
-    });
-  }
+      fetch("http://localhost:4000/thevideos", {
+        method: "POST",
+        body: JSON.stringify(newVideo),
+        headers: { "content-type": "application/json" },
+      })
+        .then(() => {
+          urlData.push(newVideo);
+          setUrlData(urlData);
+          console.log(urlData);
+        });
+  };
 
   return (
     <div className="the-button">
       <div className="form">
-        <form className="form-add" onSubmit={submit}>
+        <form className="form-add" onSubmit={Submit}>
+          <h3>you can add your videos</h3>
           <label id="firstId">
             <input
               id="lable-1"
@@ -70,22 +78,27 @@ const OrderResult = () => {
           </label>
 
           <br />
-          <button
-            onClick={buttonAddVideo}
-            type="submit"
-            className="secondButton btn btn-primary"
-          >
+          <button type="submit" className="secondButton btn btn-primary">
             Add Video
           </button>
         </form>
       </div>
+      <div className="newPlayer">
+        
       {titleAndUrl.map((elem, index) => {
         return (
           <div key={index} className="newVideoPlayer">
-            <NewVideoPlayer i={titleAndUrl} el={elem.title} rl={elem.url} />
+            <NewVideoPlayer
+              rating={rating}
+              setRating={setRating}
+              i={titleAndUrl}
+              el={elem.title}
+              rl={elem.url}
+              />
           </div>
         );
       })}
+      </div>
     </div>
   );
 };

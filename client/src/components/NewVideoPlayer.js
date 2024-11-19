@@ -1,27 +1,30 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Reactplayer from "react-player";
 import { FiThumbsUp } from "react-icons/fi";
 import { FiThumbsDown } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const NewVideoPlayer = ({ rl, i, el }) => {
-  let randomNumbers = Math.floor(Math.random() * 100 + 1);
-  const [random, setRandom] = useState(randomNumbers);
+const NewVideoPlayer = ({ rating, setRating, rl, i, el }) => {
+  // let randomNumbers = Math.floor(Math.random() * 100 + 1);
+  // const [random, setRandom] = useState(randomNumbers);
   const randomVoteUp = () => {
-    setRandom(random + 1);
+    setRating(rating + 1);
   };
   const randomVoteDown = () => {
-    setRandom(random - 1);
+    setRating(rating - 1);
   };
-  const deleteVideo = (elem) => {
-    let deleteIndex = elem.filter((elm, index) => {
+  const deleteVideo = (i) => {
+    console.log(i);
+    let deleteIndex = i.filter((elm) => {
       console.log(elm);
-      console.log(index);
-
-      return index !== 0 ? null : elm;
-    });
-    console.log(deleteIndex);
+      if(elm.url === "String"){
+        return null;
+    }else{
+      return elm;
+    }
+  });
+    console.log(' rating was deleted is ', rating);
     return deleteIndex;
   };
   return (
@@ -29,12 +32,18 @@ const NewVideoPlayer = ({ rl, i, el }) => {
       <div className="btnHead">
         {el}
         <span className="btnSpan">
-          <Button onClick={randomVoteDown}>
+          <Button
+            onClick={randomVoteUp}
+            style={{ backgroundColor: "blue", width: "70px" }}
+          >
             {" "}
             <FiThumbsUp />{" "}
           </Button>
-          {random}
-          <Button onClick={randomVoteUp}>
+          {rating}
+          <Button
+            onClick={randomVoteDown}
+            style={{ backgroundColor: "blue", width: "70px" }}
+          >
             {" "}
             <FiThumbsDown />{" "}
           </Button>
@@ -45,7 +54,7 @@ const NewVideoPlayer = ({ rl, i, el }) => {
       <Button
         type="button"
         onClick={() => deleteVideo(i)}
-        style={{ backgroundColor: "red" }}
+        style={{ backgroundColor: "red", width: "70px" , margin: "0 auto"}}
         className="buton"
       >
         {" "}

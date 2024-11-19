@@ -6,7 +6,7 @@ import Footer from "./Footer.js";
 
 const Features = () => {
   return (
-    <div>
+    <div className="feature">
       <Header />
       <div className="features-body">
         <div className="features-li">
@@ -29,8 +29,10 @@ const Features = () => {
           </i>
         </div>
       </div>
-      <div className="block-div"></div>
+      <div className="block-div">
       <Footer />
+
+      </div>
     </div>
   );
 };

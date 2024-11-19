@@ -16,14 +16,16 @@ function About() {
           <h5>Who We Are</h5>
           <p>
             {" "}
-            This is a wider card with supporting text below as a natural lead-in
+
+            I junior developer tried to make this website to help people interact with youtube videos
+
           </p>
         </card>
         <card className="card-1">
           <h5>How Our Work</h5>
           <p>
             {" "}
-            This is a wider card with supporting text below as a natural lead-in
+            you can add videos , buy or watch our videos, also if you like you can download the videos it is simple
           </p>
         </card>{" "}
         <card className="card-1">
@@ -34,8 +36,10 @@ function About() {
           </p>
         </card>
       </CardGroup>
-
+<div className="aboutFooter">
+  
       <Footer />
+</div>
     </div>
   );
 }

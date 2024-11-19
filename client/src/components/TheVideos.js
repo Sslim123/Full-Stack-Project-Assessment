@@ -19,8 +19,8 @@ const TheVideos = () => {
   const [allVideo, setAllVideo] = useState([]);
   const [allVideoId, setAllVideoId] = useState([]);
   const [allVideoRat, setAllVideoRat] = useState([]);
-
   const [videos, setVideos] = useState("");
+
   const handleSort = () => {
     let sorted = video.sort((a, b) => {
       if (a.title < b.title) {
@@ -88,13 +88,14 @@ const TheVideos = () => {
     setVideo(newProps);
   }
   return (
-    <div className="div2">
+    <>
       <Header />
+    <div className="div2">
       <Navbar
         variant="dark"
         bg="dark"
         expand="md"
-        style={{ margin: "0 auto", width: "70vw" }}
+        style={{ margin: "0 auto", width: "50vw" }}
       >
         <Container>
           <Navbar.Brand href="#home"></Navbar.Brand>
@@ -121,8 +122,6 @@ const TheVideos = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
-      <OrderResult />
 
       <label id="search">
         <input
@@ -131,10 +130,13 @@ const TheVideos = () => {
           value={videos}
           placeholder="search you video"
           onChange={(e) => setVideos(e.target.value)}
-        />
+          />
       </label>
+          </Navbar>
+      <OrderResult />
       <div className="addVideos">
-        {video
+
+        { video
           .filter((val) => {
             if (allVoted === "") {
               return val;
@@ -171,7 +173,7 @@ const TheVideos = () => {
                 {<ReactPlayers orl={lik.url} />}
                 <button
                   onClick={() => RemoveId(lik.id)}
-                  className="btn btn-primary"
+                  className="btn btn-danger"
                 >
                   <i className="fas fa-trash"></i>
                 </button>
@@ -181,6 +183,8 @@ const TheVideos = () => {
       </div>
       <Footer />
     </div>
+    </>
+
   );
 };
 

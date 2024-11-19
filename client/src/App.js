@@ -1,4 +1,5 @@
 import "./App.css";
+import "./style-css/theVideos.css";
 import TheVideos from "./components/TheVideos.js";
 import About from './components/About.js';
 import Features from "./components/Features.js";

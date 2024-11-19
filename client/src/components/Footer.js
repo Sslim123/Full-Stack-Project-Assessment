@@ -32,9 +32,10 @@ const Footer = () => {
         </ul>
       </div>
       <div className="card-body">
-        <h5 className="card-title">Special title treatment</h5>
+        <h5 className="card-title"> Address</h5>
         <p className="card-text">
-          With supporting text below as a natural lead-in to additional content.
+        Flat 32, Glenfinn Drive, Glasgow
+        G123 3DG
         </p>
         <a href="/" className="btn btn-primary">
           Go to Home
