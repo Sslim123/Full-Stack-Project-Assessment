@@ -4,6 +4,16 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+} .navbar{
+  width: 60%;
+  position: absolute;
+  top: 26px;
+  right: 45px;
+  height: 17%;
+}.navbar button{
+  width: 100px;
 }
 
 #search {
@@ -59,11 +69,16 @@ h1 {
   @media screen and (max-width: 480px){
     
     .div2 {
-    width: 100%;
+    width: 90%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin: 0 auto;
+  }
+  .navbar{
+    height: 10vh;
+    width: 20vw;
+    position: absolute;
+    top: 10px;
+    left: 80px;
   }
   .App-header {
     width: 95%;

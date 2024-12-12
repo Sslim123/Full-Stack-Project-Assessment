@@ -90,101 +90,101 @@ const TheVideos = () => {
   return (
     <>
       <Header />
-    <div className="div2">
-      <Navbar
-        variant="dark"
-        bg="dark"
-        expand="md"
-        style={{ margin: "0 auto", width: "50vw" }}
-      >
-        <Container>
-          <Navbar.Brand href="#home"></Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-dark-example" />
-          <Navbar.Collapse id="navbar-dark-example">
-            <Nav>
-              <NavDropdown
-                id="nav-dropdown-dark-example"
-                title="Sort By"
-                menuVariant="dark"
-              >
-                {" "}
-                <NavDropdown.Item>
-                  <Button onClick={handleSort}>Title</Button>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Button onClick={ratingSort}>Rating</Button>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Button onClick={idSort}>Id</Button>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
+      <div className="div2">
+        <div className="navbar">
+          <Navbar
+            variant="dark"
+            bg="dark"
+            expand="md"
+            style={{ marginRight: "55px", width: "50vw" }}
+          >
+            <Container>
+              <Navbar.Brand href="#home"></Navbar.Brand>
+              <Navbar.Toggle aria-controls="navbar-dark-example" />
+              <Navbar.Collapse id="navbar-dark-example">
+                <Nav>
+                  <NavDropdown
+                    id="nav-dropdown-dark-example"
+                    title="Sort By"
+                    menuVariant="dark"
+                  >
+                    {" "}
+                    <NavDropdown.Item>
+                      <Button onClick={handleSort}>Title</Button>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Button onClick={ratingSort}>Rating</Button>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Button onClick={idSort}>Id</Button>
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                  </NavDropdown>
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
 
-      <label id="search">
-        <input
-          id="search"
-          name="search"
-          value={videos}
-          placeholder="search you video"
-          onChange={(e) => setVideos(e.target.value)}
-          />
-      </label>
+            <label id="search">
+              <input
+                id="search"
+                name="search"
+                value={videos}
+                placeholder="search you video"
+                onChange={(e) => setVideos(e.target.value)}
+              />
+            </label>
           </Navbar>
-      <OrderResult />
-      <div className="addVideos">
+        </div>
+        <OrderResult />
+        <div className="addVideos">
+          {video
+            .filter((val) => {
+              if (allVoted === "") {
+                return val;
+              } else if (val.title.toLowerCase().indexOf(videos) > -1) {
+                return val;
+              } else {
+                return null;
+              }
+            })
+            .map((lik, i) => {
+              return (
+                <div className="allVideos" key={i}>
+                  <h2> {lik.title}</h2>
+                  <button
+                    className="clickButton  btn btn-primary"
+                    onClick={() => sumVote(lik.rating)}
+                    type="button"
+                  >
+                    <i>
+                      <FiThumbsUp />
+                    </i>
+                  </button>
+                  {lik.rating}
+                  <button
+                    onClick={() => buttonClick(lik.rating)}
+                    type="button"
+                    className="btn btn-primary"
+                  >
+                    <i>
+                      <FiThumbsDown />
+                    </i>
+                  </button>
 
-        { video
-          .filter((val) => {
-            if (allVoted === "") {
-              return val;
-            } else if (val.title.toLowerCase().indexOf(videos) > -1) {
-              return val;
-            } else {
-              return null;
-            }
-          })
-          .map((lik, i) => {
-            return (
-              <div className="allVideos" key={i}>
-                <h2> {lik.title}</h2>
-                <button
-                  className="clickButton  btn btn-primary"
-                  onClick={() => sumVote(lik.rating)}
-                  type="button"
-                >
-                  <i>
-                    <FiThumbsUp />
-                  </i>
-                </button>
-                {lik.rating}
-                <button
-                  onClick={() => buttonClick(lik.rating)}
-                  type="button"
-                  className="btn btn-primary"
-                >
-                  <i>
-                    <FiThumbsDown />
-                  </i>
-                </button>
-
-                {<ReactPlayers orl={lik.url} />}
-                <button
-                  onClick={() => RemoveId(lik.id)}
-                  className="btn btn-danger"
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
-              </div>
-            );
-          })}
+                  {<ReactPlayers orl={lik.url} />}
+                  <button
+                    onClick={() => RemoveId(lik.id)}
+                    className="btn btn-danger"
+                  >
+                    <i className="fas fa-trash"></i>
+                  </button>
+                </div>
+              );
+            })}
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
     </>
-
   );
 };
 

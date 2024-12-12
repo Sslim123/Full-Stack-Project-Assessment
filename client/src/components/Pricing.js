@@ -8,10 +8,14 @@ import Img2 from "./images/images2.jpeg";
 import Img3 from "./images/movieposter.jpg";
 
 const Pricing = () => {
+  const SubmitForm = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
       <Header />
       <form
+        onSubmit={SubmitForm}
         className="formInput"
         style={{ margin: "40px auto", width: "300px" }}
       >

@@ -33,10 +33,7 @@ const Footer = () => {
       </div>
       <div className="card-body">
         <h5 className="card-title"> Address</h5>
-        <p className="card-text">
-        Flat 32, Glenfinn Drive, Glasgow
-        G123 3DG
-        </p>
+        <p className="card-text">Flat 32, Glenfinn Drive, Glasgow G123 3DG</p>
         <a href="/" className="btn btn-primary">
           Go to Home
         </a>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NewVideoPlayer from "./NewVideoPlayer";
 const jsonResult = require("../exampleresponse.json");
 
@@ -36,16 +36,15 @@ const OrderResult = () => {
     setTitleAndUrl(updateNewVideo);
     setTitle("");
     setUrl("");
-      fetch("http://localhost:4000/thevideos", {
-        method: "POST",
-        body: JSON.stringify(newVideo),
-        headers: { "content-type": "application/json" },
-      })
-        .then(() => {
-          urlData.push(newVideo);
-          setUrlData(urlData);
-          console.log(urlData);
-        });
+    await fetch("http://localhost:4000/thevideos", {
+      method: "POST",
+      body: JSON.stringify(newVideo),
+      headers: { "content-type": "application/json" },
+    }).then(() => {
+      urlData.push(newVideo);
+      setUrlData(urlData);
+      console.log(urlData);
+    });
   };
 
   return (
@@ -84,20 +83,19 @@ const OrderResult = () => {
         </form>
       </div>
       <div className="newPlayer">
-        
-      {titleAndUrl.map((elem, index) => {
-        return (
-          <div key={index} className="newVideoPlayer">
-            <NewVideoPlayer
-              rating={rating}
-              setRating={setRating}
-              i={titleAndUrl}
-              el={elem.title}
-              rl={elem.url}
+        {titleAndUrl.map((elem, index) => {
+          return (
+            <div key={index} className="newVideoPlayer">
+              <NewVideoPlayer
+                rating={rating}
+                setRating={setRating}
+                i={titleAndUrl}
+                el={elem.title}
+                rl={elem.url}
               />
-          </div>
-        );
-      })}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
